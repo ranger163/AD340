@@ -6,4 +6,45 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter your zipcode"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/zipcodeEditText"
+        app:layout_constraintEnd_toEndOf="@+id/zipcodeEditText"
+        app:layout_constraintStart_toStartOf="@+id/zipcodeEditText" />
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@android:drawable/ic_dialog_map"
+        app:layout_constraintBottom_toTopOf="@+id/title"
+        app:layout_constraintEnd_toEndOf="@+id/title"
+        app:layout_constraintStart_toStartOf="@+id/title" />
+
+    <EditText
+        android:id="@+id/zipcodeEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Enter zipcode"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/enterButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit Zipcode"
+        app:layout_constraintEnd_toEndOf="@+id/zipcodeEditText"
+        app:layout_constraintStart_toStartOf="@+id/zipcodeEditText"
+        app:layout_constraintTop_toBottomOf="@+id/zipcodeEditText" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
