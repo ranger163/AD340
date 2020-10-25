@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/titleTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Enter your zipcode"
@@ -21,9 +21,9 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:src="@android:drawable/ic_dialog_map"
-        app:layout_constraintBottom_toTopOf="@+id/title"
-        app:layout_constraintEnd_toEndOf="@+id/title"
-        app:layout_constraintStart_toStartOf="@+id/title" />
+        app:layout_constraintBottom_toTopOf="@+id/titleTv"
+        app:layout_constraintEnd_toEndOf="@+id/titleTv"
+        app:layout_constraintStart_toStartOf="@+id/titleTv" />
 
     <EditText
         android:id="@+id/zipcodeEditText"
