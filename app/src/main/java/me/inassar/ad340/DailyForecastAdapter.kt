@@ -8,7 +8,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_daily_forecast.view.*
 
-class DailyForecastAdapter : ListAdapter<DailyForecast, DailyForecastViewHolder>(DIFF_CONFIG) {
+class DailyForecastAdapter(
+    private val itemClickListener: (DailyForecast) -> Unit
+) :
+    ListAdapter<DailyForecast, DailyForecastViewHolder>(DIFF_CONFIG) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DailyForecastViewHolder {
         return DailyForecastViewHolder(
@@ -17,7 +20,7 @@ class DailyForecastAdapter : ListAdapter<DailyForecast, DailyForecastViewHolder>
     }
 
     override fun onBindViewHolder(holder: DailyForecastViewHolder, position: Int) {
-        holder.bindUi(getItem(position))
+        holder.bindUi(getItem(position), itemClickListener)
     }
 
     companion object {
@@ -39,10 +42,11 @@ class DailyForecastAdapter : ListAdapter<DailyForecast, DailyForecastViewHolder>
 }
 
 class DailyForecastViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    fun bindUi(dailyForecast: DailyForecast) {
+    fun bindUi(dailyForecast: DailyForecast, itemClickListener: (DailyForecast) -> Unit) {
         itemView.apply {
             forecastTempTv.text = dailyForecast.temp.toString()
             forecastDescTv.text = dailyForecast.description
+            setOnClickListener { itemClickListener(dailyForecast) }
         }
     }
 }

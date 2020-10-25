@@ -22,11 +22,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun init() {
         forecastRepository.weeklyForecast.observe(this, ::updateUi)
-        dailyForecastAdapter = DailyForecastAdapter()
+        dailyForecastAdapter = DailyForecastAdapter(::forecastItemClick)
         forecastRecycler.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = dailyForecastAdapter
         }
+    }
+
+    private fun forecastItemClick(dailyForecast: DailyForecast) {
+        Toast.makeText(this, dailyForecast.temp.toString(), Toast.LENGTH_LONG).show()
     }
 
     private fun interactions() {
