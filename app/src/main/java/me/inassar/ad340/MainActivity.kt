@@ -3,12 +3,14 @@ package me.inassar.ad340
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
 
     private val forecastRepository = ForecastRepository()
+    private lateinit var dailyForecastAdapter: DailyForecastAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,6 +22,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun init() {
         forecastRepository.weeklyForecast.observe(this, ::updateUi)
+        dailyForecastAdapter = DailyForecastAdapter()
+        forecastRecycler.apply {
+            layoutManager = LinearLayoutManager(this@MainActivity)
+            adapter = dailyForecastAdapter
+        }
     }
 
     private fun interactions() {
@@ -33,6 +40,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateUi(forecastItems: List<DailyForecast>) {
-        Toast.makeText(this, forecastItems.toString(), Toast.LENGTH_LONG).show()
+        dailyForecastAdapter.submitList(forecastItems)
     }
 }
