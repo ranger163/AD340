@@ -13,17 +13,23 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        enterButton.setOnClickListener {
-            val zipcode: String = zipcodeEditText.text.toString()
 
-            if (zipcode.length != 5) {
+        init()
+        interactions()
+    }
+
+    private fun init() {
+        forecastRepository.weeklyForecast.observe(this, ::updateUi)
+    }
+
+    private fun interactions() {
+        enterButton.setOnClickListener {
+            if (zipcodeEditText.text.toString().length != 5) {
                 Toast.makeText(this, "zipCode entry error", Toast.LENGTH_SHORT).show()
             } else {
-                forecastRepository.loadForecast(zipcode)
+                forecastRepository.loadForecast(zipcodeEditText.text.toString())
             }
         }
-
-        forecastRepository.weeklyForecast.observe(this, ::updateUi)
     }
 
     private fun updateUi(forecastItems: List<DailyForecast>) {
